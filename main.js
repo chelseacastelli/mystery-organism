@@ -45,11 +45,35 @@ const pAequorFactor = (specimenNum, dna) => {
       const survivalRate = this.dna.filter(base => base === 'C' || base === 'G');
 
       return survivalRate.length >= 9 ? true : false;
+    },
+
+    complementStrand() {
+      let compStrand = [];
+      for (let i = 0; i < this.dna.length; i++) {
+        switch(this.dna[i]) {
+          case 'A':
+            compStrand[i] = 'T';
+            break;
+          case 'T':
+            compStrand[i] = 'A';
+            break;
+          case 'C':
+            compStrand[i] = 'G';
+            break;
+          case 'G':
+            compStrand[i] = 'C';
+            break;
+          default:
+            break;
+        }
+      }
+      return compStrand;
     }
   }
 }
 
 let canSurvive = [];
+let complements = [];
 
 let number = 1;
 while(canSurvive.length < 30) {
@@ -61,4 +85,4 @@ while(canSurvive.length < 30) {
   }
 }
 
-console.log(canSurvive);
+
